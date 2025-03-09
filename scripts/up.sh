@@ -9,17 +9,6 @@ if [ ! -f "fedora-41-base.qcow2" ]; then
         -O fedora-41-base.qcow2
 fi
 
-cat <<'EOF' > cloud-init.yaml
-#cloud-config
-users:
-  - name: fedora
-    plain_text_passwd: password
-    lock_passwd: false
-    shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
-ssh_pwauth: true
-EOF
-
 cloud-localds cloud-init.img cloud-init.yaml
 
 if [ ! -f "fedora-working-layer.qcow2" ]; then
