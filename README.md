@@ -1,9 +1,9 @@
 # Qemu Fedora Workstation playground
 
-This playground allows testing the launch of a Fedora Workstation OS - the Desktop version - in Qemu.
-My initial goal with this playground is to be able to automatically test the installation of my workstation with Chezmoi in the future.
+This playground allows testing the launch of a Fedora Workstation OS - the Desktop version - in [Qemu](https://en.wikipedia.org/wiki/QEMU).
+My initial goal with this playground is to be able to automatically test the installation of my workstation with [Chezmoi](https://www.chezmoi.io) in the future.
 
-My second goal with this playground is to explore a minimalist alternative to Vagrant.
+My second goal with this playground is to explore a minimalist alternative to [Vagrant](https://en.wikipedia.org/wiki/Vagrant_(software)).
 
 This playground is meant to be run and has been tested on Fedora 41.
 
@@ -83,3 +83,16 @@ $ ssh -o StrictHostKeyChecking=no -p 2222 fedora@localhost
 Warning: Permanently added '[localhost]:2222' (ED25519) to the list of known hosts.
 [fedora@localhost ~]$
 ```
+
+Install packages to set up Fedora Workstation with Gnome Desktop:
+
+```sh
+$ ./scripts/install-vm-workstation.sh
+```
+
+Result:
+
+<img src="qemu-screenshot2.png" />
+
+> [!TIP]
+> You can check the package installation script in the file [`./_payload_install-vm-workstation.sh`](./_payload_install-vm-workstation.sh)
