@@ -81,6 +81,5 @@ Access to the VM via ssh (or use `./scripts/enter-in-vm.sh`):
 $ ssh-keygen -R "[localhost]:2222"
 $ ssh -o StrictHostKeyChecking=no -p 2222 fedora@localhost
 Warning: Permanently added '[localhost]:2222' (ED25519) to the list of known hosts.
-fedora@localhost's password:
 [fedora@localhost ~]$
 ```
