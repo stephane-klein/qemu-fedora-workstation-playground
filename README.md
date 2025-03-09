@@ -70,7 +70,9 @@ $ qemu-system-x86_64 \
     -device virtio-vga-gl \
     -display gtk,gl=on \
     -nic user,hostfwd=tcp::2222-:22 \
-    -drive file=cloud-init.img,format=raw
+    -drive file=cloud-init.img,format=raw \
+    -fsdev local,id=fsdev0,path=$(pwd)/shared/,security_model=mapped-file \
+    -device virtio-9p-pci,fsdev=fsdev0,mount_tag=host_share
 ```
 
 <img src="qemu-screenshot1.png" />
@@ -82,6 +84,24 @@ $ ssh-keygen -R "[localhost]:2222"
 $ ssh -o StrictHostKeyChecking=no -p 2222 fedora@localhost
 Warning: Permanently added '[localhost]:2222' (ED25519) to the list of known hosts.
 [fedora@localhost ~]$
+```
+
+A shared folder between the host and the virtual machine is configured, here's how to mount this folder in the VM (or use `./scripts/setup-shared-folder.sh`):
+
+```sh
+$ ./scripts/enter-in-vm.sh
+# Host [localhost]:2222 found: line 2098
+/home/stephane/.ssh/known_hosts updated.
+Original contents retained as /home/stephane/.ssh/known_hosts.old
+Warning: Permanently added '[localhost]:2222' (ED25519) to the list of known hosts.
+Last login: Sun Mar  9 11:31:38 2025
+[fedora@localhost ~]$ sudo mkdir -p /mnt/host_share
+[fedora@localhost ~]$ sudo mount -t 9p -o trans=virtio,version=9p2000.L host_share /mnt/host_share
+[fedora@localhost ~]$ ls /mnt/host_share/ -lha
+total 0
+drwxr-xr-x. 1 fedora fedora 16 Mar  9 11:44 .
+drwxr-xr-x. 1 root   root   20 Mar  9 11:45 ..
+-rw-r--r--. 1 fedora fedora  0 Mar  9 11:44 .gitkeep
 ```
 
 Install packages to set up Fedora Workstation with Gnome Desktop:
