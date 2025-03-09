@@ -96,3 +96,7 @@ Result:
 
 > [!TIP]
 > You can check the package installation script in the file [`./_payload_install-vm-workstation.sh`](./_payload_install-vm-workstation.sh)
+
+Screencast:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7iuGBhrvMa4?si=WIyY2r1yj-ivSEJN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
